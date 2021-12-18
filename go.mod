@@ -1,4 +1,4 @@
-module go-petstore
+module github.com/rajat965ng/go-petstore
 
 go 1.17
 
