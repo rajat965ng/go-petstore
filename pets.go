@@ -42,10 +42,9 @@ type PetList struct {
 
 // Pet represents a Petstore pet.
 type Pet struct {
-	ID      string `json:"id"`
-	Name    string `json:"name"`
-	Species string `json:"species"`
-	Age     int    `json:"age"`
+	ID     string `json:"id"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
 }
 
 // PetListOptions represents the options for listing pets.
@@ -74,20 +73,16 @@ func (s *pets) List(options PetListOptions) (*PetList, error) {
 
 // PetCreateOptions represents the options for creating an pet.
 type PetCreateOptions struct {
-	Name    string `json:"name"`
-	Species string `json:"species"`
-	Age     int    `json:"age"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
 }
 
 func (p PetCreateOptions) valid() error {
 	if !validString(&p.Name) {
 		return errors.New("pet name is required")
 	}
-	if !validString(&p.Species) {
-		return errors.New("pet species is required")
-	}
-	if !validInteger(&p.Age) {
-		return errors.New("age is required")
+	if !validString(&p.Status) {
+		return errors.New("pet Status is required")
 	}
 	return nil
 }
@@ -135,9 +130,8 @@ func (s *pets) Read(petID string) (*Pet, error) {
 
 // PetUpdateOptions represents the options for updating an pet.
 type PetUpdateOptions struct {
-	Name    string `json:"name"`
-	Species string `json:"species"`
-	Age     int    `json:"age"`
+	Name   string `json:"name"`
+	Status string `json:"status"`
 }
 
 // Update attributes of an existing pet.
